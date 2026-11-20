@@ -4,8 +4,8 @@
 
 // ----- Supabase 연결 정보 (Project Settings → API 에서 복사) -----
 // ⚠️ Publishable(anon) 키만 넣기! service_role/secret 키는 절대 금지
-const SUPABASE_URL = '여기에_Project_URL';
-const SUPABASE_KEY = '여기에_Publishable_또는_anon_키';
+const SUPABASE_URL = 'https://wsvbnwvcfbdbqoasfhxw.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_wKD9-J1hPmTXHvvOV2PDmQ_hKiyUUZu';
 const TABLE_NAME = 'cafe_menu03';
 
 // supabase-js(CDN)가 만들어 둔 window.supabase로 클라이언트(창고 출입증) 만들기
