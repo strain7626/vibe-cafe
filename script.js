@@ -58,9 +58,8 @@ function calculateTotal() {
     optionPrice += Number(opt.dataset.price);
   });
 
-  // 수량은 1~10 사이로 고정
-  let quantity = Number(quantityInput.value) || 1;
-  quantity = Math.min(10, Math.max(1, quantity));
+  // 입력한 수량 그대로 계산 (몰래 10으로 바꾸면 화면과 실제 주문이 달라짐). 범위 검사는 주문할 때
+  const quantity = Number(quantityInput.value) || 0;
 
   return (drinkPrice + sizePrice + optionPrice) * quantity;
 }
@@ -94,7 +93,13 @@ form.addEventListener('submit', async (event) => {
   const drinkPrice = Number(drinkSelect.options[drinkSelect.selectedIndex].dataset.price);
   const size = document.querySelector('input[name="size"]:checked').value;
   const options = Array.from(document.querySelectorAll('input[name="option"]:checked')).map((o) => o.value);
-  const quantity = Math.min(10, Math.max(1, Number(quantityInput.value) || 1));
+  // 수량은 1~10잔 정수만 (직접 타이핑하면 30, 1.5 같은 값도 들어올 수 있음)
+  const quantity = Number(quantityInput.value);
+  if (!Number.isInteger(quantity) || quantity < 1 || quantity > 10) {
+    alert('수량은 1~10잔까지 주문할 수 있어요');
+    quantityInput.focus();
+    return;
+  }
   const request = requestInput.value.trim();
   const total = calculateTotal();
 
