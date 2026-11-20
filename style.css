@@ -1,0 +1,170 @@
+/* ===== 전체 바탕: 따뜻한 베이지 ===== */
+* { box-sizing: border-box; } /* 패딩을 포함해서 너비 계산 (박스 모델) */
+
+body {
+  margin: 0;
+  background: #faf6f0;
+  font-family: '맑은 고딕', 'Malgun Gothic', sans-serif;
+  color: #3e2a1c;
+}
+
+/* 최대 520px, 가운데 정렬된 카드 */
+.container {
+  max-width: 520px;
+  margin: 24px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(107, 66, 38, 0.12);
+}
+
+/* ===== 상단 간판 ===== */
+.header { text-align: center; }
+.logo {
+  font-size: 56px;
+  display: inline-block;
+  animation: wiggle 3s ease-in-out infinite; /* 로고가 천천히 흔들림 */
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+h1 { margin: 4px 0; color: #6b4226; }
+.subtitle { margin: 0 0 16px; color: #8a6a52; }
+
+/* ===== 탭 메뉴 ===== */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #e8dccd;
+  margin-bottom: 20px;
+}
+.tab {
+  flex: 1;
+  padding: 12px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #b89a82;              /* 선택 안 된 탭: 연한 갈색 */
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.tab.active {
+  color: #6b4226;              /* 선택된 탭: 갈색 글씨 + 갈색 밑줄 */
+  border-bottom-color: #6b4226;
+  font-weight: bold;
+}
+.badge {
+  display: inline-block;
+  min-width: 22px;
+  padding: 2px 7px;
+  border-radius: 999px;        /* 둥근 배지 */
+  background: #6b4226;
+  color: #fff;
+  font-size: 12px;
+}
+.badge.bounce { animation: bounce 0.4s; } /* 주문 접수 시 통통 */
+@keyframes bounce {
+  50% { transform: scale(1.4); }
+}
+
+/* ===== 입력 항목 ===== */
+.field { margin-bottom: 16px; border: none; padding: 0; }
+label, legend { display: block; margin-bottom: 6px; font-weight: bold; }
+.required { color: #c0392b; }
+
+input[type="text"], input[type="tel"], input[type="number"], select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d9c8b4;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+}
+/* 글을 쓰는 중일 때(:focus): 갈색 테두리 + 연한 갈색 그림자 */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #6b4226;
+  box-shadow: 0 0 0 3px rgba(107, 66, 38, 0.2);
+}
+
+/* 라디오/체크박스: 가로로 나란히, 간격 두고 */
+.option-row {
+  display: flex;
+  flex-wrap: wrap;             /* 좁은 화면에선 다음 줄로 */
+  align-items: center;
+  gap: 8px 12px;
+}
+.option-row label { display: inline; margin: 0; font-weight: normal; }
+
+/* ===== 예상 금액 ===== */
+.total {
+  font-size: 24px;
+  font-weight: bold;
+  color: #6b4226;
+  text-align: center;
+}
+
+/* ===== 버튼 ===== */
+.buttons { display: flex; gap: 12px; }
+.btn-order, .btn-reset {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s;
+}
+.btn-order { background: #6b4226; color: #fff; border: none; }
+.btn-order:hover { background: #855634; transform: translateY(-2px); } /* 살짝 밝게 + 떠오름 */
+.btn-order:disabled { background: #b89a82; cursor: wait; transform: none; }
+.btn-reset { background: #fff; color: #6b4226; border: 1px solid #6b4226; }
+.btn-reset:hover { background: #faf6f0; }
+
+/* ===== 주문 확인 메시지: 연두 배경 + 초록 글씨 ===== */
+.confirm {
+  margin-top: 16px;
+  padding: 14px;
+  background: #e8f8e0;
+  color: #2e7d32;
+  border-radius: 8px;
+}
+
+/* ===== 주문 내역 ===== */
+.empty { text-align: center; color: #8a6a52; }
+.order-list { list-style: none; padding: 0; margin: 0; }
+.order-card {
+  position: relative;
+  background: #faf6f0;
+  border-left: 5px solid #6b4226;  /* 왼쪽 갈색 세로줄 */
+  border-radius: 8px;
+  padding: 12px 70px 12px 14px;
+  margin-bottom: 10px;
+}
+.order-card p { margin: 3px 0; }
+.order-title { font-weight: bold; }
+.order-meta { font-size: 13px; color: #8a6a52; }
+.btn-cancel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  background: #fff;
+  border: 1px solid #c0392b;
+  color: #c0392b;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.history-footer { margin-top: 12px; }
+.history-total { font-weight: bold; color: #6b4226; text-align: right; }
+.summary { font-size: 14px; color: #8a6a52; }
+
+/* hidden 클래스가 붙으면 화면에서 숨기기 */
+.hidden { display: none !important; }
+
+/* 휴대폰 화면 */
+@media (max-width: 560px) {
+  .container { margin: 0; border-radius: 0; min-height: 100vh; }
+}
